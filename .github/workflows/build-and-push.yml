@@ -3,6 +3,9 @@ name: Build & Push
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - Ilan321.AspNetCore.Caching.Extensions/*
+      - Ilan321.AspNetCore.Caching.Extensions.sln
 
 jobs:
   publish:
