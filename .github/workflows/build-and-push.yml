@@ -1,0 +1,32 @@
+name: Build & Push
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Build
+      run: dotnet build --no-restore
+      
+    - name: Publish NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        # Filepath of the project to be packaged, relative to root of repository
+        PROJECT_FILE_PATH: Ilan321.AspNetCore.Caching.Extensions/Ilan321.AspNetCore.Caching.Extensions.csproj
+        # NuGet package id, used for version detection & defaults to project name
+        PACKAGE_NAME: Ilan321.AspNetCore.Caching.Extensions
+        # API key to authenticate with NuGet server
+        NUGET_KEY: ${{secrets.NUGET_KEY}}
+        # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
+        INCLUDE_SYMBOLS: true
