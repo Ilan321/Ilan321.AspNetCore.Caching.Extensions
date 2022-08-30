@@ -28,5 +28,3 @@ jobs:
         PACKAGE_NAME: Ilan321.AspNetCore.Caching.Extensions
         # API key to authenticate with NuGet server
         NUGET_KEY: ${{secrets.NUGET_KEY}}
-        # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-        INCLUDE_SYMBOLS: true
